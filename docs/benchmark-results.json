@@ -1,0 +1,33 @@
+{
+  "testedAt": "2026-10-16T15:16:11.945Z",
+  "node": "v24.19.0",
+  "results": [
+    {
+      "mode": "local-push",
+      "clients": 10,
+      "events": 30,
+      "deliveries": 300,
+      "p50_ms": 6.98,
+      "p95_ms": 11.61,
+      "max_ms": 21.75,
+      "environment": "Single Node.js process; SQLite; HTTP over 127.0.0.1 loopback; no artificial network delay; no browser playback",
+      "poll_ms": null
+    },
+    {
+      "mode": "polling-adapter",
+      "clients": 10,
+      "events": 30,
+      "deliveries": 300,
+      "p50_ms": 72.54,
+      "p95_ms": 139.42,
+      "max_ms": 155.04,
+      "environment": "Single Node.js process; SQLite; HTTP over 127.0.0.1 loopback; no artificial network delay; no browser playback",
+      "poll_ms": 125
+    }
+  ],
+  "limitations": [
+    "These are ten protocol clients on loopback, not ten physical devices on a LAN.",
+    "The polling adapter uses local SQLite; it does not measure Cloudflare D1 or internet latency.",
+    "Video decoding, autoplay permissions and actual corrected playback drift require a browser/device test."
+  ]
+}

@@ -1,0 +1,110 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Neostance · Run, deploy, submit</title><style>body{background:#0c101a;color:#ecedf5;font:16px/1.75 Manrope,Arial,sans-serif;margin:40px auto;padding:0 24px;max-width:900px}h1{font-size:44px;letter-spacing:-2px;color:#edcca4}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.85 ui-monospace}a{color:#edcca4}</style><h1>Your people. Your project.</h1><p><a href="/neostance-source.zip">Download editable source ZIP</a> · <a href="/">Open Neostance</a> · <a href="/still/index.html">STILL case study</a></p><p>The compact source ZIP includes START-HERE.md. Run its media download script before building. The complete project ZIP supplied in chat already includes videos and a prebuilt client.</p><pre># Deploy Neostance
+
+## Already public — share these links
+
+- Watch party: https://afterhours-watchparty-vishv.yogita18892009patel.chatgpt.site
+- STILL public case-study page: https://afterhours-watchparty-vishv.yogita18892009patel.chatgpt.site/still/index.html
+- STILL direct PDF: https://afterhours-watchparty-vishv.yogita18892009patel.chatgpt.site/still/Still_UIUX_Case_Study.pdf
+
+Anyone can view these pages without an access invitation. Creating and joining rooms works as a guest. The hosted app also offers **Sign in → Continue with ChatGPT**; Google users choose **Continue with Google** on that sign-in screen. This uses the hosting platform&#x27;s account system, rather than a separate Google OAuth client. A completed Google-account sign-in has not been exercised in this build environment. Names are prefilled after sign-in; watch later, favourites and downloads remain browser-local. Signing out does not transfer or end an existing room session.
+
+The standalone edition uses guest rooms and explicitly explains that account sign-in is available on the hosted site. It never trusts identity headers supplied by a local HTTP client.
+
+The site includes eight playable selections: one complete Caminandes short, four Blender trailers/teasers and three original silent motion studies. These are credited and labelled individually. The complete submission ZIP includes the videos and prebuilt client. The smaller source ZIP linked on the website omits videos and generated builds: read its **START-HERE.md**, run `node scripts/fetch-media.mjs`, then install dependencies and build locally. Downloaded media is checked against a SHA-256 manifest.
+
+## Put STILL in Canva
+
+The public page above is a website link, not a Canva link. To create a Canva design, import `Still_UIUX_Case_Study.pdf` into your own Canva account, review the imported pages, then use Canva&#x27;s sharing settings to allow anyone with the link to view. Importing can alter typography or grouping, so inspect the result. The original PDF remains the reference. An actual Canva URL requires the Canva account connection; no Canva design has been created or shared automatically.
+
+The downloadable **GitHub-ready edition** is a small React + Node.js + SQLite app. It includes editable source, tests, a prebuilt client and a Dockerfile. It runs independently of ChatGPT. Use this edition for your public recruitment repository.
+
+## 1. Run on Windows first — no terminal setup needed
+
+1. Extract the ZIP completely. Open its `Neostance` folder.
+2. Install Node.js 24 from https://nodejs.org if needed.
+3. Double-click `Start-Neostance.bat`.
+4. Open http://localhost:3000. Keep the console open.
+5. Create a room; join using another browser/private session. For phones, use the printed LAN address on the same Wi-Fi or personal hotspot. Share the LAN link, not localhost.
+
+The included prebuilt client needs **no npm install** to run. If the console closes, run `node --version` and `node scripts/local-server.mjs` from this folder to see the error. A campus network may isolate devices; use a hotspot if local joining fails.
+
+## 2. Put the source on your GitHub
+
+1. Sign into your own GitHub account. Create a repository named `neostance-watchparty` and select **Public**.
+2. Upload the **contents** of the extracted `Neostance` folder. `package.json`, `README.md`, `Dockerfile`, `core`, `tests` and `local-dist` must be at the repository root. Do not upload just the ZIP.
+3. GitHub Desktop is the easiest option for preserving the full folder tree: File → Add local repository → create a repository here → Publish repository → clear Keep this code private.
+4. Alternatively use Add file → Upload files. Browser uploads can omit dotfiles or hit file-count limits; GitHub Desktop handles the complete tree more reliably.
+5. Open the repository in a signed-out/private window and check it is readable. Submit this repository URL to recruitment.
+
+Terminal alternative (after creating an empty public repository):
+
+```sh
+git init
+git add .
+git commit -m &quot;Build Neostance watch party&quot;
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/neostance-watchparty.git
+git push -u origin main
+```
+
+Replace YOUR_USERNAME. Use GitHub&#x27;s normal credential prompt. Never put a password or token in source files. If you already initialized the repository, skip `git init` and do not add the same remote twice.
+
+## 3. Host on Render using Docker
+
+This is a deployment route for the standalone edition. No Render account has been created or charged on your behalf.
+
+1. Open https://dashboard.render.com and choose **New → Web Service**.
+2. Connect your public GitHub repository. Select the **Docker** runtime and the branch you uploaded.
+3. Keep root directory empty when `Dockerfile` is at the repository root. Use `./Dockerfile`; leave Docker Command empty so its CMD runs.
+4. Set health check path to `/healthz`. The code binds to `0.0.0.0` and the platform&#x27;s `PORT` automatically.
+5. For durable rooms, choose a service plan that supports persistent disks and mount a disk at **`/app/.afterhours`**. The included Docker configuration stores SQLite there.
+6. Create/deploy the service. After it succeeds, open the assigned HTTPS URL on two devices; create and join a room, test play/pause/seek and chat.
+7. Add the live URL to your GitHub README and repository About section.
+
+Render&#x27;s default filesystem is ephemeral. Without a persistent disk, room data can disappear after a restart/redeploy; use that setup only as a temporary demo and disclose it. Disk availability depends on the current plan. Keep this single-instance SQLite edition at **one running instance**: each replica would otherwise have a separate room database. The hosted ChatGPT Site uses its own shared D1 adapter instead.
+
+The Dockerfile uses the included prebuilt `local-dist` folder. After changing React/CSS source, rebuild and commit `local-dist` before deploying again:
+
+```sh
+npm install
+npm run typecheck
+npm test
+npm run build
+```
+
+## 4. Docker on your own machine/server
+
+```sh
+docker build -t neostance .
+docker run -d --name neostance -p 3000:3000 -v neostance-data:/app/.afterhours --restart unless-stopped neostance
+```
+
+Open http://localhost:3000. On a public server, put it behind an HTTPS reverse proxy that forwards the original Host and `X-Forwarded-Proto: https`. The container sets `TRUST_PROXY=1` for this arrangement. No Docker daemon was available in the build environment, so the Docker image itself has not been executed here; the same Node runtime and server paths were checked directly.
+
+## 5. What you control
+
+- Entire application source and local database; no API key is required for local operation.
+- Your GitHub repository, hosting account, domain and deployment settings.
+- Room creator is the host: playback permissions, locks, member removal, host transfer, room export and ending the room.
+- Names and room ownership use browser sessions, not permanent user accounts. Keep your host tab/session to retain its secret.
+- A room code grants entry to an accessible website; it does not override a private hosting audience.
+
+## Troubleshooting
+
+- **Blank page after editing:** run `npm run build`, then restart. Source edits do not alter the prebuilt bundle automatically.
+- **Node SQLite error:** use Node.js 24, not an older Node installation.
+- **PORT already in use:** stop the old console, or set a different PORT. Windows PowerShell: `$env:PORT=3001; npm start`.
+- **Origin rejected behind HTTPS:** configure the reverse proxy to forward HTTPS. Use `TRUST_PROXY=1` only behind a trusted proxy. Docker already sets this.
+- **Guest cannot play:** host-only controls are enabled by default; change them in Settings or transfer hosting.
+- **Video silent:** unmute locally. Browser autoplay may require one tap.
+- **Custom source fails:** provide a direct HTTPS MP4/WebM link playable by the participants&#x27; browsers. A YouTube page or subscription stream is not such a link.
+- **Shared link asks for access:** the hosted Site is configured as public. Use the live URL above, rather than an editor or conversation link. If account sign-in opens, return to the public site to continue as a guest.
+
+## Official references checked 16 October 2026
+
+- https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository
+- https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository
+- https://render.com/docs/docker
+- https://render.com/docs/web-services
+- https://render.com/docs/disks
+</pre></html>

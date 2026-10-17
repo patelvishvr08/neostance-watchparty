@@ -1,0 +1,6 @@
+node_modules/
+.afterhours/
+.env*
+*.log
+.DS_Store
+# Commit local-dist: the deployment uses its prebuilt client.

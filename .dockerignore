@@ -1,0 +1,9 @@
+.git
+node_modules
+.afterhours
+.env*
+.sites-runtime
+.wrangler
+dist
+public/neostance-source.zip
+*.zip

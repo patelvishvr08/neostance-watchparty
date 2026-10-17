@@ -1,0 +1,135 @@
+{
+  "clips": [
+    {
+      "id": "sintel",
+      "file": "/media/neo-sintel.mp4",
+      "duration": 52.21,
+      "video_codec": "h264",
+      "profile": "High",
+      "pixel_format": "yuv420p",
+      "dimensions": [
+        854,
+        480
+      ],
+      "audio": [
+        "aac"
+      ],
+      "fast_start": true,
+      "full_decode_passed": true
+    },
+    {
+      "id": "bunny",
+      "file": "/media/neo-bunny.mp4",
+      "duration": 33.0,
+      "video_codec": "h264",
+      "profile": "High",
+      "pixel_format": "yuv420p",
+      "dimensions": [
+        960,
+        540
+      ],
+      "audio": [
+        "aac"
+      ],
+      "fast_start": true,
+      "full_decode_passed": true
+    },
+    {
+      "id": "orbit",
+      "file": "/media/neo-orbit.mp4",
+      "duration": 24.0,
+      "video_codec": "h264",
+      "profile": "High",
+      "pixel_format": "yuv420p",
+      "dimensions": [
+        960,
+        540
+      ],
+      "audio": [],
+      "fast_start": true,
+      "full_decode_passed": true
+    },
+    {
+      "id": "tides",
+      "file": "/media/neo-tides.mp4",
+      "duration": 24.0,
+      "video_codec": "h264",
+      "profile": "High",
+      "pixel_format": "yuv420p",
+      "dimensions": [
+        960,
+        540
+      ],
+      "audio": [],
+      "fast_start": true,
+      "full_decode_passed": true
+    },
+    {
+      "id": "floodlights",
+      "file": "/media/neo-floodlights.mp4",
+      "duration": 10.0,
+      "video_codec": "h264",
+      "profile": "High",
+      "pixel_format": "yuv420p",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "audio": [],
+      "fast_start": true,
+      "full_decode_passed": true
+    },
+    {
+      "id": "caminandes",
+      "file": "/media/neo-caminandes.mp4",
+      "duration": 146.05,
+      "video_codec": "h264",
+      "profile": "High",
+      "pixel_format": "yuv420p",
+      "dimensions": [
+        960,
+        540
+      ],
+      "audio": [
+        "aac"
+      ],
+      "fast_start": true,
+      "full_decode_passed": true
+    },
+    {
+      "id": "steel",
+      "file": "/media/neo-steel.mp4",
+      "duration": 39.92,
+      "video_codec": "h264",
+      "profile": "High",
+      "pixel_format": "yuv420p",
+      "dimensions": [
+        960,
+        400
+      ],
+      "audio": [
+        "aac"
+      ],
+      "fast_start": true,
+      "full_decode_passed": true
+    },
+    {
+      "id": "dream",
+      "file": "/media/neo-dream.mp4",
+      "duration": 75.25,
+      "video_codec": "h264",
+      "profile": "High",
+      "pixel_format": "yuv420p",
+      "dimensions": [
+        960,
+        540
+      ],
+      "audio": [
+        "aac"
+      ],
+      "fast_start": true,
+      "full_decode_passed": true
+    }
+  ],
+  "scope": "Local file structure, codec and full decode checks. Not a browser or real-device synchronization test."
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "path": "/media/neo-sintel.mp4",
+    "sha256": "32c5eb9a4e1484e687cdd4e90525b9c564f4d4b0788d9d56fa3b76a2e9bb1b6a"
+  },
+  {
+    "path": "/media/neo-bunny.mp4",
+    "sha256": "7a99b5b6ec9e7178590965b7a1b5dd33faac839129d21fd8ac78c5ac730417e8"
+  },
+  {
+    "path": "/media/neo-orbit.mp4",
+    "sha256": "ac1155da58daca7e5d95cd1661db656c707c511610c408938af56357ab1d9e43"
+  },
+  {
+    "path": "/media/neo-tides.mp4",
+    "sha256": "f51c7f65268bcc0e5afb4381795391c77757fa0ea835df75c27b7636576c73a0"
+  },
+  {
+    "path": "/media/neo-floodlights.mp4",
+    "sha256": "2b1c3530bb18253cd9ed7ccd4dc89d5d737c7c4f21d501fed8b5bcdbb58f2711"
+  },
+  {
+    "path": "/media/neo-caminandes.mp4",
+    "sha256": "f1784e33286a2e6e51ebf2ab224b58e70af36eebda66753df103a69cd2f33871"
+  },
+  {
+    "path": "/media/neo-steel.mp4",
+    "sha256": "6854287da6e44b73288afa0f8c16e1af00fa2f7fd4cb074265ef663277f28d00"
+  },
+  {
+    "path": "/media/neo-dream.mp4",
+    "sha256": "7f03c16ff402903986ef33758df42efd14d6f486af32cba342fad5bf53e1c758"
+  }
+]
